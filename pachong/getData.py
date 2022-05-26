@@ -12,7 +12,8 @@ def getData(searchParam, pagenumber):
     tree = etree.HTML(web_data)
     current_page = tree.xpath('//div[@class="pager"]/ul/li[@class="current-page"]/span/text()')[0]
     try:
-        next_page = str(tree.xpath('//div[@class="pager"]/ul/li[@class="next-page"]/a/@href')[0]).split('&')[1].split("=")[-1]
+        next_page = \
+        str(tree.xpath('//div[@class="pager"]/ul/li[@class="next-page"]/a/@href')[0]).split('&')[1].split("=")[-1]
     except:
         next_page = None
     product_item_list = tree.xpath('//div[@class="item-grid"]/div[@class="item-box"]/div[@class="product-item"]')
@@ -56,6 +57,7 @@ def getData(searchParam, pagenumber):
 if __name__ == "__main__":
     res = getData('A', 1)
     import pprint
+
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(res)
     print(len(res['data_list']))
